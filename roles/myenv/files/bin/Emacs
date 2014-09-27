@@ -1,0 +1,18 @@
+#!/bin/sh
+
+#REVERSE="-rv"
+
+USER=`whoami`
+
+ps auwx | grep -v grep | grep $USER | grep emacs > /dev/null
+if [ $? -ne 0 ]; then
+    echo "No running emacs is found."
+    echo -n "Starting NEW one..."
+    nohup emacs $REVERSE -fn fontset-standard -geometry 100x42 > /dev/null 2>&1 &
+    echo "done."
+else
+    # Emacs is already running.
+    echo "Running Emacs is found."
+    emacsclient -d $DISPLAY -e '(make-frame)'
+    echo "Connected to the emacs."
+fi

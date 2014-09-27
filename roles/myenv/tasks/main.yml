@@ -1,0 +1,42 @@
+---
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  sudo: yes
+
+- name: Install packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - git
+    - git-review
+    - emacs
+    - lv
+    - pbzip2
+    - magit
+  sudo: yes
+
+- name: Copy dot files
+  copy: src=dotfiles/ dest={{ ansible_env.HOME }} backup=yes
+
+- name: Ensure {{ ansible_env.HOME }}/.bash_completion.d
+  file: dest={{ ansible_env.HOME }}/.bash_completion.d
+        mode=755
+        state=directory
+
+- name: Setup SSH configs
+  copy: src=ssh/ dest={{ ansible_env.HOME }}/.ssh
+        force=no
+
+#- name: Setup SSH private key
+#  template: src=ssh_private_key.j2 dest={{ ansible_env.HOME }}/.ssh/id_dsa.ansible force=no mode=400
+
+- name: Copy useful scripts
+  copy: src=bin/ dest={{ ansible_env.HOME }}/bin backup=yes
+
+- name: Install Emacs Lisp files
+  copy: src={{ item.src }} dest={{ item.dest }}
+        backup=yes
+  with_items:
+    - src: elisp
+      dest: "{{ ansible_env.HOME }}"
+    - src: elisp-auto-install/
+      dest: "{{ ansible_env.HOME }}/.emacs.d/auto-install"

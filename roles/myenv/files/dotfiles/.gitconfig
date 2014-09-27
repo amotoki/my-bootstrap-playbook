@@ -1,0 +1,14 @@
+[user]
+	name = Akihiro Motoki
+	email = motoki@da.jp.nec.com
+[color]
+	ui = auto
+[core]
+	editor = vi
+	pager = lv
+[http]
+	sslVerify = no
+[push]
+	default = upstream
+[gitreview]
+	username = amotoki

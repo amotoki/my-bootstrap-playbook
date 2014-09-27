@@ -1,0 +1,19 @@
+---
+- name: git clone devstack
+  git: repo=http://git.openstack.org/openstack-dev/devstack.git
+       dest={{ ansible_env.HOME }}/devstack
+
+- name: Prepare OpenStack CLI bash completions
+  file: src=/opt/stack/python-{{ item }}client/tools/{{ item }}.bash_completion
+        dest={{ ansible_env.HOME }}/.bash_completion.d/{{ item }}
+        state=link
+        force=yes
+  with_items:
+    - cinder
+    - nova
+    - neutron
+    - keystone
+
+- name: git clone devstack-tools
+  git: repo=https://github.com/amotoki/devstack-tools.git
+       dest={{ ansible_env.HOME }}/tools
