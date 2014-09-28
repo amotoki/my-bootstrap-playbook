@@ -21,4 +21,5 @@
     - lv
     - pbzip2
     - magit
+    - colordiff
   sudo: yes
