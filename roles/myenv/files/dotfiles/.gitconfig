@@ -12,3 +12,7 @@
 	default = upstream
 [gitreview]
 	username = amotoki
+[alias]
+        set-upstream = branch --set-upstream-to=origin/master master
+        st = status
+        diffcache = diff --cached
