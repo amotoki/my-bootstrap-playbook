@@ -1,11 +1,16 @@
 ---
 - name: git clone devstack
   git: repo=http://git.openstack.org/openstack-dev/devstack.git
-       dest={{ ansible_env.HOME }}/devstack
+       dest={{ devstack_dir }}
+
+- name: Ensure {{ home }}/.bash_completion.d
+  file: dest={{ bash_completion_dir }}
+        mode=755
+        state=directory
 
 - name: Prepare OpenStack CLI bash completions
   file: src=/opt/stack/python-{{ item }}client/tools/{{ item }}.bash_completion
-        dest={{ ansible_env.HOME }}/.bash_completion.d/{{ item }}
+        dest={{ bash_completion_dir }}/{{ item }}
         state=link
         force=yes
   with_items:
@@ -16,4 +21,12 @@
 
 - name: git clone devstack-tools
   git: repo=https://github.com/amotoki/devstack-tools.git
-       dest={{ ansible_env.HOME }}/tools
+       dest={{ devstack_tools_dir }}
+
+- name: Deploy local.conf
+  command: cp {{ item.src }} {{ item.dest }} creates={{ item.dest }}
+  with_items:
+    - src: "{{ devstack_tools_dir }}/config/local.conf"
+      dest: "{{ devstack_dir }}/local.conf"
+    - src: "{{ devstack_tools_dir }}/config/local.sh"
+      dest: "{{ devstack_dir }}/local.sh"
