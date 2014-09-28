@@ -33,3 +33,10 @@
       dest: "{{ home }}"
     - src: elisp-auto-install/
       dest: "{{ home }}/.emacs.d/auto-install"
+
+- git: repo=https://github.com/icefox/git-hooks.git
+       dest="{{ home }}/git-hooks"
+
+- file: src="{{ home }}/git-hooks/git-hooks"
+        dest="{{ home }}/bin/git-hooks"
+        state=link
