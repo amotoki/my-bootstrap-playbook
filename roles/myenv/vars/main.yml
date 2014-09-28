@@ -1,0 +1,2 @@
+---
+home: "{{ ansible_env.HOME }}"
