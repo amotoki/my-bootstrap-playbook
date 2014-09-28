@@ -2,6 +2,7 @@
 - name: Set host name
   sudo: yes
   hostname: name={{ host }}
+  when: host not in ["local", "127.0.0.1"]
 
 - name: Set /etc/hosts
   sudo: yes
