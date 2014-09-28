@@ -1,0 +1,25 @@
+127.0.0.1       localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+172.16.18.32    ipdc06 ostack01
+172.16.18.33    dev02 ostack02 ostack02.oide.spf.cl.nec.co.jp
+172.16.18.34    dev03 ostack03 ostack03.oide.spf.cl.nec.co.jp
+172.16.18.35    dev04 ostack04 ostack04.oide.spf.cl.nec.co.jp
+172.16.18.36    dev05 ostack05 ostack05.oide.spf.cl.nec.co.jp
+172.16.18.37    dev06 ostack06 ostack06.oide.spf.cl.nec.co.jp
+172.16.18.38    dev07 ostack07 ostack07.oide.spf.cl.nec.co.jp
+172.16.18.39    dev08 ostack08 ostack08.oide.spf.cl.nec.co.jp
+172.16.18.40    dev09 ostack09 ostack09.oide.spf.cl.nec.co.jp
+172.16.18.41    dev10 ostack10 ostack10.oide.spf.cl.nec.co.jp
+172.16.18.42    dev11 ostack11 ostack11.oide.spf.cl.nec.co.jp
+172.16.18.43    dev12 ostack12 ostack12.oide.spf.cl.nec.co.jp
+172.16.18.44    dev13 ostack13 ostack13.oide.spf.cl.nec.co.jp
+172.16.18.45    dev14 ostack14 ostack14.oide.spf.cl.nec.co.jp
+172.16.18.46    dev15 ostack15 ostack15.oide.spf.cl.nec.co.jp
+172.16.18.47    dev16 ostack16 ostack16.oide.spf.cl.nec.co.jp

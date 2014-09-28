@@ -1,19 +1,4 @@
 ---
-- name: Update apt cache
-  apt: update_cache=yes cache_valid_time=3600
-  sudo: yes
-
-- name: Install packages
-  apt: pkg={{ item }} state=installed
-  with_items:
-    - git
-    - git-review
-    - emacs
-    - lv
-    - pbzip2
-    - magit
-  sudo: yes
-
 - name: Copy dot files
   copy: src=dotfiles/ dest={{ ansible_env.HOME }} backup=yes
 

@@ -1,0 +1,23 @@
+---
+- name: Set host name
+  sudo: yes
+  hostname: name={{ host }}
+
+- name: Set /etc/hosts
+  sudo: yes
+  copy: src=hosts dest=/etc/hosts owner=root group=root mode=644 backup=yes
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  sudo: yes
+
+- name: Install packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - git
+    - git-review
+    - emacs
+    - lv
+    - pbzip2
+    - magit
+  sudo: yes
