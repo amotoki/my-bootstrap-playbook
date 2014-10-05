@@ -38,3 +38,14 @@
       dest: "{{ devstack_dir }}/02-repos"
     - src: "{{ devstack_tools_dir }}/config/10-local"
       dest: "{{ devstack_dir }}/10-local"
+
+- name: Install optional packages for OpenStack development
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - libmysqlclient-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - python-dev
+    - libssl-dev
+    - libffi-dev
+  sudo: yes
