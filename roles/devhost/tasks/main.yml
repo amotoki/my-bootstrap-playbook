@@ -15,12 +15,13 @@
 - name: Install packages
   apt: pkg={{ item }} state=installed
   with_items:
+    - colordiff
+    - emacs
     - git
     - git-review
-    - emacs
     - lv
-    - pbzip2
     - magit
-    - colordiff
+    - pbzip2
     - screen
+    - sl
   sudo: yes
