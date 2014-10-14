@@ -32,12 +32,6 @@
       dest: "{{ devstack_dir }}/local.conf"
     - src: "{{ devstack_tools_dir }}/config/local.sh"
       dest: "{{ devstack_dir }}/local.sh"
-    - src: "{{ devstack_tools_dir }}/config/01-proxy"
-      dest: "{{ devstack_dir }}/01-proxy"
-    - src: "{{ devstack_tools_dir }}/config/02-repos"
-      dest: "{{ devstack_dir }}/02-repos"
-    - src: "{{ devstack_tools_dir }}/config/10-local"
-      dest: "{{ devstack_dir }}/10-local"
 
 - name: Install optional packages for OpenStack development
   apt: pkg={{ item }} state=installed
