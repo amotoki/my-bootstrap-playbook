@@ -4,10 +4,12 @@ if is_service_enabled horizon; then
     if [[ "$1" == "source" ]]; then
         :
     elif [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
-        cd $DEST/horizon
-        rm -rf horizon/locale
-        rm -rf openstack_dashboard/locale
-        git checkout -- .
+        if [ -d $DEST/horizon ]; then
+            cd $DEST/horizon
+            rm -rf horizon/locale
+            rm -rf openstack_dashboard/locale
+            git checkout -- .
+        fi
     elif [[ "$1" == "stack" && "$2" == "install" ]]; then
         :
     elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
