@@ -34,8 +34,12 @@
        dest={{ horizon_i18n_tools_dir }}
        force=no
 
+- name: Install transifex client
+  pip: name=transifex-client
+  sudo: yes
+
 - name: Copy local.conf and 99-horizon-i18n
-  template: src={{ item.src }} dest={{ item.dest }}
+  template: src={{ item.src }} dest={{ item.dest }} backup=yes
   with_items:
   - src: local.conf
     dest: "{{ devstack_dir }}/local.conf"
