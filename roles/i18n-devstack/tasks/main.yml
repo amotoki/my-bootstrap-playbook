@@ -34,6 +34,10 @@
        dest={{ horizon_i18n_tools_dir }}
        force=no
 
+- name: Install pip
+  apt: pkg=python-pip state=installed
+  sudo: yes
+
 - name: Install transifex client
   pip: name=transifex-client
   sudo: yes
@@ -60,7 +64,6 @@
 - name: cron import-trans.sh
   cron:
     name: "Horizon import trans"
-    minute: 29
+    minute: 15
     job: "{{ horizon_i18n_tools_dir }}/import-trans.sh -r {{ branch|basename }}"
     user: "{{ ansible_env.USER }}"
-    state: absent
