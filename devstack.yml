@@ -1,4 +1,4 @@
 ---
 - hosts: "{{ host }}"
   roles:
-    - myenv
+    - devstack
