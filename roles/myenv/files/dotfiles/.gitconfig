@@ -19,3 +19,9 @@
         graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
         set-upstream = branch --set-upstream-to=origin/master master
         delete-all-reviews = !git checkout master && git branch | grep review/ | xargs --no-run-if-empty git branch -D
+
+[url "amotoki@git.sourceforge.jp:/gitroot/linuxjm/"]
+        pushInsteadOf = http://scm.sourceforge.jp/gitroot/linuxjm/
+        pushInsteadOf = git://git.sourceforge.jp/gitroot/linuxjm/
+[url "git@github.com:amotoki/"]
+        pushInsteadOf = https://github.com/amotoki/
