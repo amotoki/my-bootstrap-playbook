@@ -10,15 +10,16 @@
         state=directory
 
 - name: Prepare OpenStack CLI bash completions
-  file: src=/opt/stack/python-{{ item }}client/tools/{{ item }}.bash_completion
-        dest={{ bash_completion_dir }}/{{ item }}
-        state=link
-        force=yes
+  get_url:
+    url: "https://raw.githubusercontent.com/openstack/python-{{ item }}client/master/tools/{{ item }}.bash_completion"
+    dest: "{{ bash_completion_dir }}/{{ item }}"
+    force: yes
   with_items:
-    - cinder
     - nova
+    - cinder
     - neutron
     - keystone
+    - glance
 
 - name: git clone devstack-tools
   git: repo=https://github.com/amotoki/devstack-tools.git
