@@ -1,7 +1,4 @@
 ---
-- include_vars: vault.yml
-  tags: sensible
-
 - name: Copy dot files
   copy: src=dotfiles/ dest={{ home }} backup=yes
 
@@ -15,11 +12,11 @@
 
 - name: Deploy Transifex RC
   template: src=transifexrc.j2 dest={{ home }}/.transifexrc mode=600 backup=yes
-  tags: sensible
+  when: transifex_username is defined and transifex_password is defined
 
 - name: Setup SSH private key
   template: src=ssh_private_key.j2 dest={{ home }}/.ssh/id_dsa force=no mode=400 backup=yes
-  tags: sensible
+  when: ssh_private_key is defined
 
 - name: Copy useful scripts
   copy: src=bin/ dest={{ home }}/bin backup=yes
