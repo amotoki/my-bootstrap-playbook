@@ -1,4 +1,10 @@
 ---
+- name: Install git
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - git
+  sudo: yes
+
 - name: git clone devstack
   git: repo=http://git.openstack.org/openstack-dev/devstack.git
        dest={{ devstack_dir }}
