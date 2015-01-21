@@ -1,6 +1,4 @@
 ---
 - hosts: "{{ host }}"
   roles:
-    - devhost
-    - myenv
     - i18n-devstack
