@@ -8,11 +8,6 @@
 - name: Copy dot files
   copy: src=dotfiles/ dest={{ home }} backup=yes
 
-- name: Ensure {{ home }}/.bash_completion.d
-  file: dest={{ home }}/.bash_completion.d
-        mode=755
-        state=directory
-
 - name: Setup SSH configs
   copy: src=ssh/ dest={{ home }}/.ssh backup=yes
 
