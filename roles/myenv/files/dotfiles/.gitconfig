@@ -23,5 +23,5 @@
 [url "amotoki@git.sourceforge.jp:/gitroot/linuxjm/"]
         pushInsteadOf = http://scm.sourceforge.jp/gitroot/linuxjm/
         pushInsteadOf = git://git.sourceforge.jp/gitroot/linuxjm/
-[url "git@github.com:amotoki/"]
-        pushInsteadOf = https://github.com/amotoki/
+[url "git@github.com:"]
+        pushInsteadOf = https://github.com/

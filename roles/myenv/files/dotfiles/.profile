@@ -22,5 +22,5 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 export PATH=$PATH:$HOME/tools
-source $HOME/tools/id-tool.sh
-source $HOME/tools/account-wrapper.sh
+test -f $HOME/tools/id-tool.sh && source $HOME/tools/id-tool.sh
+test -f $HOME/tools/account-wrapper.sh && source $HOME/tools/account-wrapper.sh
