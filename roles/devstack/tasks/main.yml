@@ -12,7 +12,7 @@
 
 - name: Ensure {{ home }}/.bash_completion.d
   file: dest={{ bash_completion_dir }}
-        mode=755
+        mode=0755
         state=directory
 
 - name: Prepare OpenStack CLI bash completions

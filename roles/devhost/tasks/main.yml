@@ -6,7 +6,7 @@
 
 - name: Set /etc/hosts
   sudo: yes
-  copy: src=hosts dest=/etc/hosts owner=root group=root mode=644 backup=yes
+  copy: src=hosts dest=/etc/hosts owner=root group=root mode=0644 backup=yes
 
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=3600
