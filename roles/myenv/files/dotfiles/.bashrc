@@ -53,10 +53,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+__openrc_ps1() {
+    if [ ! -n "$OS_AUTH_URL" ]; then
+	return
+    fi
+    local auth_url=$(echo $OS_AUTH_URL | cut -d / -f 3 | cut -d : -f 1)
+    echo " [OS:${OS_USERNAME}/${OS_TENANT_NAME}@${auth_url}]"
+}
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\ww$(__git_ps1)\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\ww$(__git_ps1)$(__openrc_ps1)\$ '
 fi
 unset color_prompt force_color_prompt
 
