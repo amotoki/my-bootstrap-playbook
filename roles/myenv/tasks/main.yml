@@ -6,10 +6,23 @@
     - "../vars/secrets_dummy.yml"
 
 - name: Copy dot files
-  copy: src=dotfiles/ dest={{ home }} backup=yes
+  copy: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
+  with_items:
+    - .bash_completion
+    - .bashrc
+    - .emacs
+    - .exrc
+    - .gitconfig
+    - .lv
+    - .profile
+    - .screenrc
 
 - name: Setup SSH configs
-  copy: src=ssh/ dest={{ home }}/.ssh backup=yes
+  copy: src=ssh/{{item}} dest={{home}}/.ssh/{{item}} backup=yes
+  with_items:
+    - authorized_keys
+    - config
+    - id_dsa.pub
 
 - name: Deploy Transifex RC
   template: src=transifexrc.j2 dest={{ home }}/.transifexrc mode=0600 backup=yes
@@ -20,7 +33,9 @@
   when: ssh_private_key is defined
 
 - name: Copy useful scripts
-  copy: src=bin/ dest={{ home }}/bin backup=yes
+  copy: src=bin/{{item}} dest={{home}}/bin/{{item}} backup=yes
+  with_items:
+    - Emacs
 
 - name: Install Emacs Lisp files
   copy: src={{ item.src }} dest={{ item.dest }}
