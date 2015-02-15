@@ -18,7 +18,7 @@
     - .screenrc
 
 - name: Setup SSH configs
-  copy: src=ssh/{{item}} dest={{home}}/.ssh/{{item}} backup=yes
+  copy: src=ssh/{{item}} dest={{home}}/.ssh/{{item}} backup=yes force=no
   with_items:
     - authorized_keys
     - config
