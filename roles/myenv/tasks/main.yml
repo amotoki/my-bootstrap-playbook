@@ -42,6 +42,7 @@
   copy: src=bin/{{item}} dest={{home}}/bin/{{item}} backup=yes
   with_items:
     - Emacs
+    - git-clone-openstack-repo.sh
 
 - name: Install Emacs Lisp files
   copy: src={{ item.src }} dest={{ item.dest }}
