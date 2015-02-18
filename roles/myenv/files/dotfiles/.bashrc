@@ -58,6 +58,12 @@ __openrc_ps1() {
 	return
     fi
     local auth_url=$(echo $OS_AUTH_URL | cut -d / -f 3 | cut -d : -f 1)
+    if which resolveip > /dev/null; then
+        hostname=$(resolveip $auth_url 2>/dev/null | sed -e 's/^.* is //' -e 's/ //' | cut -d , -f 1)
+        if [ -n "$hostname" ]; then
+            auth_url=$hostname
+        fi
+    fi
     echo " [OS:${OS_USERNAME}/${OS_TENANT_NAME}@${auth_url}]"
 }
 
