@@ -17,6 +17,9 @@
     - .profile
     - .screenrc
 
+- name: Create .ssh directory
+  file: path={{home}}/.ssh mode=0700 state=directory
+
 - name: Setup SSH configs
   copy: src=ssh/{{item}} dest={{home}}/.ssh/{{item}} backup=yes force=no
   with_items:
@@ -31,6 +34,9 @@
 - name: Setup SSH private key
   template: src=ssh_private_key.j2 dest={{ home }}/.ssh/id_dsa force=no mode=0400 backup=yes
   when: ssh_private_key is defined
+
+- name: Create bin directory
+  file: path={{home}}/bin mode=0755 state=directory
 
 - name: Copy useful scripts
   copy: src=bin/{{item}} dest={{home}}/bin/{{item}} backup=yes
