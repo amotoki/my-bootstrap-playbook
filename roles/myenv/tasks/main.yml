@@ -39,7 +39,7 @@
   file: path={{home}}/bin mode=0755 state=directory
 
 - name: Copy useful scripts
-  copy: src=bin/{{item}} dest={{home}}/bin/{{item}} backup=yes
+  copy: src=bin/{{item}} dest={{home}}/bin/{{item}} mode=0755 backup=yes
   with_items:
     - Emacs
     - git-clone-openstack-repo.sh
