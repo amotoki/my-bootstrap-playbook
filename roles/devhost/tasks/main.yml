@@ -8,6 +8,13 @@
   sudo: yes
   copy: src=hosts dest=/etc/hosts owner=root group=root mode=0644 backup=yes
 
+- name: Set apt proxy if necessary
+  sudo: yes
+  template:
+    src: apt.conf
+    dest: /etc/apt/apt.conf.d/00proxy
+  when: deb_proxy is defined
+
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=3600
   sudo: yes
