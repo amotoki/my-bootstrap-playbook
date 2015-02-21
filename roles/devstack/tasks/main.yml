@@ -32,13 +32,28 @@
        dest={{ devstack_tools_dir }}
        force=no
 
-- name: Deploy local.conf
+- name: controller must be specified for compute node
+  fail: msg="controller must be specified for compute node"
+  when: role == "compute" and controller is not defined
+
+- name: Deploy local.conf (controller)
+  template:
+    src: local.conf
+    dest: "{{ devstack_dir }}/local.conf"
+  when: role == "all-in-one"
+
+- name: Deploy local.conf (compute)
+  template:
+    src: local.conf.compute
+    dest: "{{ devstack_dir }}/local.conf"
+  when: role == "compute"
+
+- name: Deploy local.sh for controler
   command: cp {{ item.src }} {{ item.dest }} creates={{ item.dest }}
   with_items:
-    - src: "{{ devstack_tools_dir }}/config/local.conf"
-      dest: "{{ devstack_dir }}/local.conf"
     - src: "{{ devstack_tools_dir }}/config/local.sh"
       dest: "{{ devstack_dir }}/local.sh"
+  when: role == "all-in-one"
 
 - name: Install optional packages for OpenStack development
   apt: pkg={{ item }} state=installed

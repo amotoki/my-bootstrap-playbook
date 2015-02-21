@@ -1,0 +1,69 @@
+[[local|localrc]]
+#OFFLINE=True
+RECLONE=True
+
+CC_HOST={{controller|resolv}}
+
+#-----------------------------
+# Common congigurations
+#-----------------------------
+
+MYSQL_HOST=${CC_HOST}
+SERVICE_HOST=${CC_HOST}
+RABBIT_HOST=${CC_HOST}
+Q_HOST=${CC_HOST}
+
+# IP address of Management network
+HOST_IP={{host|resolv}}
+
+ENABLED_SERVICES=n-cpu,rabbit
+#disable_service cinder c-sch c-api c-vol
+
+# VNC
+enable_service n-novnc
+VNCSERVER_PROXYCLIENT_ADDRESS=$HOST_IP
+VNCSERVER_LISTEN=$HOST_IP
+
+#-----------------------------
+# Neutron
+#-----------------------------
+enable_service q-agt
+#enable_service q-dhcp
+#enable_service q-l3
+#enable_service q-meta
+#enable_service q-lbaas
+#LIBVIRT_FIREWALL_DRIVER=nova.virt.firewall.NoopFirewallDriver
+#NOVA_VIF_DRIVER=nova.virt.libvirt.vif.LibvirtOpenVswitchDriver
+Q_PLUGIN=ml2
+#Q_PLUGIN=openvswitch
+#Q_PLUGIN=linuxbridge
+#Q_USE_NAMESPACE=False
+#Q_USE_SECGROUP=True
+#Q_USE_DEBUG_COMMAND=True
+
+#Q_PLUGIN=nec
+#GRE_REMOTE_IPS=10.56.51.252:10.56.51.210:10.56.51.153
+#GRE_LOCAL_IP=10.56.51.252
+#OVS_INTERFACE=eth1
+#OFC_OFP_HOST=${CC_HOST}
+
+#-----------------------------
+# Devstack configurations
+#-----------------------------
+LOGDIR=$DEST/logs
+SCREEN_LOGDIR=$LOGDIR
+SCREEN_HARDSTATUS="%{= rw} %H %{= wk} %L=%-w%{= bw}%30L> %n%f %t*%{= wk}%+Lw%-17< %-=%{= gk} %y/%m    /%d %c"
+LOGFILE=$LOGDIR/devstack.log
+#LOG_COLOR=False
+
+ADMIN_PASSWORD=pass
+MYSQL_PASSWORD=stackdb
+RABBIT_PASSWORD=stackqueue
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+SERVICE_TOKEN=xyzpdqlazydog
+#[[post-config|/etc/neutron/dhcp_agent.ini]]
+#[DEFAULT]
+#enable_isolated_metadata = True
+#[post-config|/etc/neutron/neutron.conf]]
+#[database]
+#connection = mysql://root:stackdb@{{controller|resolv}}/neutron?charset=utf8
