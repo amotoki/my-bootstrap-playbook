@@ -17,7 +17,7 @@
   with_items:
     - colordiff
     - curl
-    - emacs
+    - emacs24-nox
     - git
     - git-review
     - lv

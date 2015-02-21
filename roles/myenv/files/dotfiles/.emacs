@@ -75,7 +75,8 @@
 
 (setq backup-directory-alist '(("\\.*$" . "~/.emacs-bak")))
 
-(set-scroll-bar-mode 'right)
+(if window-system
+    (set-scroll-bar-mode 'right))
 (auto-compression-mode t)
 
 (column-number-mode t)
