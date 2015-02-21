@@ -14,7 +14,7 @@ RABBIT_HOST=${CC_HOST}
 Q_HOST=${CC_HOST}
 
 # IP address of Management network
-HOST_IP={{host|resolv}}
+HOST_IP={{inventory_hostname|resolv}}
 
 ENABLED_SERVICES=n-cpu,rabbit
 #disable_service cinder c-sch c-api c-vol
