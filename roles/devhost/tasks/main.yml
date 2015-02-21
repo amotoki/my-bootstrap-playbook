@@ -32,4 +32,5 @@
     - pbzip2
     - screen
     - sl
+    - vim
   sudo: yes
