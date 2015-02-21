@@ -1,4 +1,3 @@
----
-- include devhost.yml
-- include myenv.yml
-- include devstack.yml
+- include: devhost.yml
+- include: myenv.yml
+- include: devstack.yml

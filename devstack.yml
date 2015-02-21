@@ -1,4 +1,4 @@
 ---
-- hosts: "{{ host }}"
+- hosts: "{{ host|default('target') }}"
   roles:
     - devstack
