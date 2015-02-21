@@ -1,2 +1,4 @@
 ansible.log
 secrets.yml
+inventory/group_vars/all/local
+inventory/target

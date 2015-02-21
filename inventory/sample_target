@@ -1,0 +1,3 @@
+[target]
+dev05
+dev06 role=compute controller=dev05
