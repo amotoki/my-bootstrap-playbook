@@ -1,4 +1,6 @@
 ---
+- set_fact: role={{role|default('all-in-one')}}
+
 - name: Install git
   apt: pkg={{ item }} state=installed
   with_items:
