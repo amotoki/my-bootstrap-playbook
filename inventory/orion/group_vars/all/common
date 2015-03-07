@@ -1,3 +1,0 @@
-deb_proxy: http://proxygate2.nic.nec.co.jp:8080/
-use_git_insteadof: no
-skip_hosts: yes

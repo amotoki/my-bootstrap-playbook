@@ -1,3 +1,0 @@
-deb_proxy: http://172.16.18.32:8000/
-use_git_insteadof: true
-skip_hosts: no
