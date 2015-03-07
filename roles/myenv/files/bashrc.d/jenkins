@@ -1,0 +1,3 @@
+# Jenkins
+export JENKINS_URL=http://osci-master.svp.cl.nec.co.jp/ci/
+alias jenkins-cli="java -jar $HOME/bin/jenkins-cli.jar"

@@ -19,8 +19,12 @@
   with_items:
     - .emacs
     - .gitconfig
+
 - name: Create ~/.bashrc.d
   file: path={{home}}/.bashrc.d state=directory
+- name: Copy jenkins to bashrc.d
+  copy: src=bashrc.d/jenkins dest={{home}}/.bashrc.d/jenkins
+  when: jenkins_cli is defined
 
 - name: Create .ssh directory
   file: path={{home}}/.ssh mode=0700 state=directory
