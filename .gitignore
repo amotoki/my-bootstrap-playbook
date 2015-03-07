@@ -1,4 +1,5 @@
+*.pyc
 ansible.log
 secrets.yml
-inventory/group_vars/all/local
-inventory/target
+inventory/*/group_vars/all/local
+inventory/*/group_vars/all/password

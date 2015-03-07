@@ -1,0 +1,9 @@
+# If set, debian/ubuntu apt proxy will be configured
+#deb_proxy: http://172.16.18.32:8000/
+
+# It should be set to false if direct SSH to the internet
+# is unreachable (default: true)
+#use_git_insteadof: false
+
+# Set yet if you don't want to override /etc/hosts (default: no)
+#skip_hosts: yes

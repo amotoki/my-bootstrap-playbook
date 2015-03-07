@@ -1,2 +1,0 @@
-#deb_proxy: http://172.16.18.32:8000/
-#ansible_sudo_pass: sample
