@@ -12,10 +12,13 @@
     - .bashrc
     - .emacs
     - .exrc
-    - .gitconfig
     - .lv
     - .profile
     - .screenrc
+- name: Copy dot files
+  template: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
+  with_items:
+    - .gitconfig
 
 - name: Create .ssh directory
   file: path={{home}}/.ssh mode=0700 state=directory
