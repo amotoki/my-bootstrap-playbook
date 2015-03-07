@@ -7,3 +7,6 @@
 
 # Set yet if you don't want to override /etc/hosts (default: no)
 #skip_hosts: yes
+
+# If set, sudo NOPASSWD entry is set up for the target user.
+#sudo_nopass: yes

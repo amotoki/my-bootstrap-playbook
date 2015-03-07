@@ -35,3 +35,18 @@
     - sl
     - vim
   sudo: yes
+
+- name: gather remote user name
+  command: whoami
+  register: username
+  when: sudo_nopass|default()
+  changed_when: no
+- name: set fact username
+  set_fact: username={{username.stdout}}
+  when: sudo_nopass|default()
+- name: set no password sudoers for ubuntu
+  template:
+    src: sudoers_nopasswd
+    dest: /etc/sudoers.d/dev_nopasswd
+  when: sudo_nopass|default()
+  sudo: yes
