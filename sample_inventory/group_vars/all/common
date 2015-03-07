@@ -1,5 +1,9 @@
 # If set, proxy is configured
-# proxy: http://xxxxxx:8080/
+#proxy:
+#  scheme: http
+#  host: proxy_host
+#  port: 8080
+#no_proxy: 127.0.0.0/8,192.168.0.0/16,172.16.0.0/12,10.0.0.0/8,.example.net
 
 # If set, debian/ubuntu apt proxy will be configured
 #deb_proxy: http://172.16.18.32:8000/

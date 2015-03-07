@@ -1,5 +1,7 @@
-[all]
+[host]
 localhost ansible_connection=local
+
+[devnode]
 ostack01
 ostack02
 ostack03
