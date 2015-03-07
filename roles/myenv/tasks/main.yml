@@ -45,6 +45,7 @@
   copy: src=bin/{{item}} dest={{home}}/bin/{{item}} mode=0755 backup=yes
   with_items:
     - Emacs
+    - agent-check.sh
     - git-clone-openstack-repo.sh
 
 - name: Install Emacs Lisp files
