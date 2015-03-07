@@ -10,7 +10,6 @@
   with_items:
     - .bash_completion
     - .bashrc
-    - .emacs
     - .exrc
     - .lv
     - .profile
@@ -18,6 +17,7 @@
 - name: Copy dot files
   template: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
   with_items:
+    - .emacs
     - .gitconfig
 - name: Create ~/.bashrc.d
   file: path={{home}}/.bashrc.d state=directory

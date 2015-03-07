@@ -11,7 +11,9 @@
 (require 'auto-install)
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)
-(setq url-proxy-services '(("http" . "proxygate2.nic.nec.co.jp:8080")))
+{% if proxy is defined %}
+(setq url-proxy-services '(("http" . "{{ proxy }}")))
+{% endif %}
 
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))

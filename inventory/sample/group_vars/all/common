@@ -1,3 +1,6 @@
+# If set, proxy is configured
+# proxy: http://xxxxxx:8080/
+
 # If set, debian/ubuntu apt proxy will be configured
 #deb_proxy: http://172.16.18.32:8000/
 
