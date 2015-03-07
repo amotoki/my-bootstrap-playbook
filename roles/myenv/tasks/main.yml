@@ -19,6 +19,8 @@
   template: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
   with_items:
     - .gitconfig
+- name: Create ~/.bashrc.d
+  file: path={{home}}/.bashrc.d state=directory
 
 - name: Create .ssh directory
   file: path={{home}}/.ssh mode=0700 state=directory

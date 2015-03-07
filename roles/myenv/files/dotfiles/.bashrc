@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+umask 022
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -22,7 +24,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -148,6 +150,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if [[ -d ~/.bashrc.d && -r ~/.bashrc.d ]]; then
+    for f in $(LC_ALL=C ls ~/.bashrc.d/*); do
+        . $f
+        test -e $f && . $f
+    done
+fi
+
 PROMPT_DIRTRIM=3
-shopt -s globstar
 export PIP_DOWNLOAD_CACHE=/home/ubuntu/.pip.cache

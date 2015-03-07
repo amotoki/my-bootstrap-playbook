@@ -24,3 +24,8 @@ fi
 export PATH=$PATH:$HOME/tools
 test -f $HOME/tools/id-tool.sh && source $HOME/tools/id-tool.sh
 test -f $HOME/tools/account-wrapper.sh && source $HOME/tools/account-wrapper.sh
+
+# Check existing SSH Agent
+if [ -f $HOME/bin/agent-check.sh ]; then
+    eval `$HOME/bin/agent-check.sh`
+fi
