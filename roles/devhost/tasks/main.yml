@@ -16,6 +16,26 @@
     dest: /etc/apt/apt.conf.d/00proxy
   when: deb_proxy is defined
 
+- name: Add proxy to /etc/environment
+  lineinfile:
+    dest: /etc/environment
+    regexp: "{{item.regexp}}"
+    line: "{{item.line}}"
+  with_items:
+  - regexp: ^http_proxy=
+    line: http_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/
+  - regexp: ^https_proxy=
+    line: https_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/
+  when: proxy is defined
+  sudo: yes
+- name: Add no_proxy to /etc/environment
+  lineinfile:
+    dest: /etc/environment
+    regexp: ^no_proxy=
+    line: no_proxy={{no_proxy}}
+  when: no_proxy is defined
+  sudo: yes
+
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=3600
   sudo: yes

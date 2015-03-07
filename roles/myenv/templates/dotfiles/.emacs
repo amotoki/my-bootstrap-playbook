@@ -12,7 +12,7 @@
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)
 {% if proxy is defined %}
-(setq url-proxy-services '(("http" . "{{ proxy }}")))
+(setq url-proxy-services '(("{{proxy.scheme}}" . "{{proxy.host}}:{{proxy.port}}")))
 {% endif %}
 
 (require 'package)
