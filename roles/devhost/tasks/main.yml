@@ -31,9 +31,12 @@
     - lv
     - magit
     - pbzip2
+    - python-dev
+    - python-pip
     - screen
     - sl
     - vim
+    - yaml-mode
   sudo: yes
 
 - name: gather remote user name
