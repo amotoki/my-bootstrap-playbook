@@ -50,6 +50,7 @@
     - git-review
     - lv
     - magit
+    - ntp
     - pbzip2
     - python-dev
     - python-pip
