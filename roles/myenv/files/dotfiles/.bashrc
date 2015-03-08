@@ -151,7 +151,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 if [[ -d ~/.bashrc.d && -r ~/.bashrc.d ]]; then
-    for f in $(LC_ALL=C ls ~/.bashrc.d/*); do
+    for f in $(find ~/.bashrc.d -type f); do
         . $f
         test -e $f && . $f
     done
