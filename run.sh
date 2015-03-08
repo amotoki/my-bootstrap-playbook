@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 ENV=`hostname`
 
@@ -6,6 +6,8 @@ if [ -z "$2" ]; then
   echo "Usage: $0 <host> <playbook> [playbook options...]"
   exit 1
 fi
+
+set -o xtrace
 
 HOST=$1
 shift
