@@ -12,6 +12,10 @@
 # is unreachable (default: true)
 #use_git_insteadof: false
 
+# If a target host is a hypervisor host, it is useful
+# to use a different type of bash prompt. (Used in myenv role)
+#hypervisor_host: true
+
 # Set yet if you don't want to override /etc/hosts (default: no)
 #skip_hosts: yes
 

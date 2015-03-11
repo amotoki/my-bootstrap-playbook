@@ -9,7 +9,6 @@
   copy: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
   with_items:
     - .bash_completion
-    - .bashrc
     - .exrc
     - .lv
     - .profile
@@ -17,6 +16,7 @@
 - name: Copy dot files
   template: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
   with_items:
+    - .bashrc
     - .emacs
     - .gitconfig
 
