@@ -15,4 +15,4 @@ The sample file is found at roles/myenv/vars/secrets_dummy.yml
 Playbook for I18N Horizon check site
 ------------------------------------
 
-    ansible-playbook -e host=dev15 i18n-devstack.yml -vv -e branch=stable/juno
+Moved to https://github.com/amotoki/ansible-i18n-devstack/

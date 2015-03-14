@@ -1,4 +1,0 @@
----
-- hosts: "{{ host }}"
-  roles:
-    - i18n-devstack

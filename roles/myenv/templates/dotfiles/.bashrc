@@ -162,4 +162,3 @@ if [[ -d ~/.bashrc.d && -r ~/.bashrc.d ]]; then
 fi
 
 PROMPT_DIRTRIM=3
-export PIP_DOWNLOAD_CACHE=/home/ubuntu/.pip.cache

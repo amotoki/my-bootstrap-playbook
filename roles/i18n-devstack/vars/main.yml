@@ -1,8 +1,0 @@
----
-home: "{{ ansible_env.HOME }}"
-#branch: master
-branch: stable/juno
-devstack_dir: "{{ home }}/devstack"
-devstack_tools_dir: "{{ home }}/tools"
-horizon_i18n_tools_dir: "{{ home }}/horizon-i18n-tools"
-bash_completion_dir: "{{ home }}/.bash_completion.d"
