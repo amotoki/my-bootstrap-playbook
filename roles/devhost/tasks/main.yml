@@ -48,6 +48,7 @@
     - emacs24-nox
     - git
     - git-review
+    - ipython
     - lv
     - magit
     - ntp
