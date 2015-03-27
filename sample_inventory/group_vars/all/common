@@ -8,6 +8,9 @@
 # If set, debian/ubuntu apt proxy will be configured
 #deb_proxy: http://172.16.18.32:8000/
 
+# If set, the downloaded tarball is extracted into /opt/stack
+#gitrepo_tarball_url: http://172.16.18.32/openstack/openstack-repo.tar.bz2
+
 # It should be set to false if direct SSH to the internet
 # is unreachable (default: true)
 #use_git_insteadof: false

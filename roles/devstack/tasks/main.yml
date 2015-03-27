@@ -1,6 +1,11 @@
 ---
 - set_fact: role={{role|default('all-in-one')}}
 
+- name: get username
+  command: whoami
+  register: username
+  changed_when: no
+
 - name: Install git
   apt: pkg={{ item }} state=installed
   with_items:
@@ -11,6 +16,18 @@
   git: repo=http://git.openstack.org/openstack-dev/devstack.git
        dest={{ devstack_dir }}
        force=no
+
+- name: create /opt/stack
+  file: path=/opt/stack state=directory owner={{username.stdout}}
+  sudo: yes
+
+- name: get gitrepo tarball
+  get_url: url={{gitrepo_tarball_url}} dest=/tmp/gitrepo.tar.bz2
+  register: tarball_updated
+  when: gitrepo_tarball_url is defined
+- name: extract gitrepo tarball
+  command: tar xf /tmp/gitrepo.tar.bz2 -C /opt/stack
+  when: tarball_updated|changed
 
 - name: Ensure {{ home }}/.bash_completion.d
   file: dest={{ bash_completion_dir }}
