@@ -21,13 +21,16 @@
   file: path=/opt/stack state=directory owner={{username.stdout}}
   sudo: yes
 
+- name: check /opt/stack/nova exists
+  stat: path=/opt/stack/nova
+  register: st
 - name: get gitrepo tarball
   get_url: url={{gitrepo_tarball_url}} dest=/tmp/gitrepo.tar.bz2
   register: tarball_updated
-  when: gitrepo_tarball_url is defined
+  when: gitrepo_tarball_url is defined and not st.stat.exists
 - name: extract gitrepo tarball
   command: tar xf /tmp/gitrepo.tar.bz2 -C /opt/stack
-  when: tarball_updated|changed
+  when: tarball_updated|changed and not st.stat.exists
 
 - name: Ensure {{ home }}/.bash_completion.d
   file: dest={{ bash_completion_dir }}
