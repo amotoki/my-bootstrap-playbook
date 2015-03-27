@@ -16,6 +16,7 @@
   git: repo=http://git.openstack.org/openstack-dev/devstack.git
        dest={{ devstack_dir }}
        force=no
+       update=no
 
 - name: create /opt/stack
   file: path=/opt/stack state=directory owner={{username.stdout}}
