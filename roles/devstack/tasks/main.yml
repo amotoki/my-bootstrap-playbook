@@ -46,6 +46,15 @@
     - keystone
     - glance
 
+- name: Create bin directory
+  file: path={{home}}/bin mode=0755 state=directory
+
+- name: Copy useful scripts
+  copy: src=bin/{{item}} dest={{home}}/bin/{{item}} mode=0755 backup=yes
+  with_items:
+    - git-clone-openstack-repo.sh
+    - horizon-reload.sh
+
 - name: git clone devstack-tools
   git: repo=https://github.com/amotoki/devstack-tools.git
        dest={{ devstack_tools_dir }}
