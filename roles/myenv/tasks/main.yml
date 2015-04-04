@@ -4,6 +4,7 @@
   with_first_found:
     - "../../../secrets.yml"
     - "../vars/secrets_dummy.yml"
+  no_log: yes
 
 - name: Copy dot files
   copy: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
