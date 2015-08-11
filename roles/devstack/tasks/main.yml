@@ -15,6 +15,7 @@
 - name: git clone devstack
   git: repo=http://git.openstack.org/openstack-dev/devstack.git
        dest={{ devstack_dir }}
+       version={{ branch }}
        force=no
        update=no
 
