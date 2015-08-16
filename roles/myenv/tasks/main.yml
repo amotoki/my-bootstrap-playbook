@@ -12,7 +12,6 @@
     - .bash_completion
     - .exrc
     - .lv
-    - .profile
     - .screenrc
 - name: Copy dot files
   template: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
@@ -20,6 +19,7 @@
     - .bashrc
     - .emacs
     - .gitconfig
+    - .profile
 
 - name: Create ~/.bashrc.d
   file: path={{home}}/.bashrc.d state=directory

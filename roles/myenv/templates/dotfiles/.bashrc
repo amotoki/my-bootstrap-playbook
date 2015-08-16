@@ -55,6 +55,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+{% if myenv_openstack_support|default(true) %}
 __openrc_ps1() {
     if [ ! -n "$OS_AUTH_URL" ]; then
 	return
@@ -68,6 +69,11 @@ __openrc_ps1() {
     fi
     echo " [OS:${OS_USERNAME}/${OS_TENANT_NAME}@${auth_url}]"
 }
+{% else %}
+__openrc_ps1() {
+    :
+}
+{% endif %}
 
 if [ "$color_prompt" = yes ]; then
 {% if hypervisor_host|default() %}

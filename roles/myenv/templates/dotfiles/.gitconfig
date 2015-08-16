@@ -20,7 +20,7 @@
         set-upstream-master = branch --set-upstream-to=origin/master master
         delete-all-reviews = !git checkout master && git branch | grep review/ | xargs --no-run-if-empty git branch -D
 
-{% if use_git_insteadof %}
+{% if use_git_insteadof|default(false) %}
 [url "amotoki@git.sourceforge.jp:/gitroot/linuxjm/"]
         pushInsteadOf = http://scm.sourceforge.jp/gitroot/linuxjm/
         pushInsteadOf = git://git.sourceforge.jp/gitroot/linuxjm/
