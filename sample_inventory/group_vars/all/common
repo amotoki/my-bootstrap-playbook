@@ -15,6 +15,10 @@
 # is unreachable (default: true)
 #use_git_insteadof: false
 
+# Setup OpenStack related settings in myenv role.
+# (default: true)
+#myenv_openstack_support: false
+
 # If a target host is a hypervisor host, it is useful
 # to use a different type of bash prompt. (Used in myenv role)
 #hypervisor_host: true
