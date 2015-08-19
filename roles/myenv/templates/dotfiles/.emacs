@@ -1,5 +1,7 @@
 ; -*- mode: emacs-lisp -*-
 
+(set-language-environment "Japanese")
+
 (setq user-mail-address "motoki@da.jp.nec.com")
 (setq user-full-name "Akihiro Motoki")
 
