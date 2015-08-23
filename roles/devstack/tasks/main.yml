@@ -88,13 +88,13 @@
       dest: "{{ devstack_dir }}/local.sh"
   when: role == "all-in-one"
 
-- name: Install optional packages for OpenStack development
-  apt: pkg={{ item }} state=installed
-  with_items:
-    - libmysqlclient-dev
-    - libxml2-dev
-    - libxslt1-dev
-    - python-dev
-    - libssl-dev
-    - libffi-dev
-  sudo: yes
+# - name: Install optional packages for OpenStack development
+#   apt: pkg={{ item }} state=installed
+#   with_items:
+#     - libmysqlclient-dev
+#     - libxml2-dev
+#     - libxslt1-dev
+#     - python-dev
+#     - libssl-dev
+#     - libffi-dev
+#   sudo: yes
