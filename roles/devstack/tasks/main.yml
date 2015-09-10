@@ -1,6 +1,15 @@
 ---
 - set_fact: role={{role|default('all-in-one')}}
 
+- name: Include site-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "../../../secrets.yml"
+    - "../vars/secrets_dummy.yml"
+  no_log: yes
+
+- include: password-var.yml
+
 - name: get username
   command: whoami
   register: username
