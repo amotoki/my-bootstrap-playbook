@@ -107,3 +107,9 @@
 #     - libssl-dev
 #     - libffi-dev
 #   sudo: yes
+
+- name: Install optional packages for OpenStack development (python3)
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - python3-dev
+  sudo: yes
