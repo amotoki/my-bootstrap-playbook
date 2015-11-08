@@ -57,6 +57,7 @@
     - python-pip
     - screen
     - sl
+    - tmux
     - vim
     - yaml-mode
   sudo: yes
