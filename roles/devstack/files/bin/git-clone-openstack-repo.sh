@@ -7,7 +7,7 @@ usage() {
 Usage: $0 <repo> [category]
 
   repo: repository base name
-  category: openstack, openstack-dev, openstack-infra, stackforge
+  category: openstack, openstack-dev, openstack-infra
     If not speciifed, all categories will be tried in this order.
     As shortcuts, dev, infra, stack|forge|sf can be used.
 EOF
@@ -26,16 +26,13 @@ get_category() {
       openstack-infra|infra)
         echo openstack-infra
         ;;
-      stackforge|stack|forge|sf)
-        echo stackforge
-        ;;
       *)
         echo "The specified category is not supported."
         usage
         exit 1
     esac
   else
-    echo openstack openstack-infra openstack-dev stackforge
+    echo openstack openstack-infra openstack-dev
   fi
 }
 
