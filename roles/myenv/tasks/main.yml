@@ -42,6 +42,13 @@
   template: src=transifexrc.j2 dest={{ home }}/.transifexrc mode=0600 backup=yes
   when: transifex_username is defined and transifex_password is defined
 
+- name: Ensure ~/.config
+  file: path={{home}}/.config state=directory
+
+- name: Deploy Zanata config
+  template: src=zanata.ini.j2 dest={{ home }}/.config/zanata.ini mode=0600 backup=yes
+  when: zanata_username is defined and zanata_apikey is defined
+
 - name: Setup SSH private key
   template: src=ssh_private_key.j2 dest={{ home }}/.ssh/id_dsa force=no mode=0400 backup=yes
   when: ssh_private_key is defined
