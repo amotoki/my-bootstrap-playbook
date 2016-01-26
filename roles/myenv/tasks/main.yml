@@ -70,16 +70,3 @@
       dest: "{{ home }}"
     - src: elisp-auto-install/
       dest: "{{ home }}/.emacs.d/auto-install"
-
-- git: repo=https://github.com/icefox/git-hooks.git
-       dest="{{ home }}/git-hooks"
-
-- stat: path="{{ home }}/git-hooks/git-hooks"
-  register: git_hooks
-  always_run: yes
-
-- file: src="{{ home }}/git-hooks/git-hooks"
-        dest="{{ home }}/bin/git-hooks"
-        state=link
-  # This 'when' is to make the check mode work
-  when: git_hooks.stat.exists
