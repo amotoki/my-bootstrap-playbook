@@ -1,0 +1,37 @@
+---
+- name: Ensure ~/.config
+  file: path={{home}}/.config state=directory
+
+- name: Deploy Zanata config
+  template: src=zanata.ini.j2 dest={{ home }}/.config/zanata.ini mode=0600 backup=yes
+  when: zanata_username is defined and zanata_apikey is defined
+
+- name: Install dependencies of zanata-cli
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - zeroinstall-injector
+    - openjdk-7-jre
+  sudo: yes
+
+- name: check zanata-cli is installed
+  stat: path="{{ home }}/bin/zanata-cli"
+  register: zanata_cli
+
+- name: Install zanata-cli
+  shell: "yes | 0install -c add zanata-cli https://raw.githubusercontent.com/zanata/zanata.github.io/master/files/0install/zanata-cli.xml"
+  when: not zanata_cli.stat.exists
+
+- name: Checkout openstack project-config repository
+  git: repo=https://git.openstack.org/openstack-infra/project-config.git
+       dest="/opt/stack/project-config"
+
+- name: Ensure /usr/local/jenkins
+  file: path=/usr/local/jenkins
+        state=directory
+  sudo: yes
+
+- name: Symlink /usr/local/jenkins/slave_scripts
+  file: src=/opt/stack/project-config/jenkins/scripts
+        dest=/usr/local/jenkins/slave_scripts
+        state=link
+  sudo: yes

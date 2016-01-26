@@ -1,0 +1,4 @@
+---
+- hosts: "{{ host|default('target') }}"
+  roles:
+    - openstack-i18n

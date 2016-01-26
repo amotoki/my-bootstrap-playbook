@@ -1,3 +1,4 @@
 - include: devhost.yml
 - include: myenv.yml
 - include: devstack.yml
+- include: openstack-i18n.yml
