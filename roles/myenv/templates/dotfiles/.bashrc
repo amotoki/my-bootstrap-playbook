@@ -177,4 +177,11 @@ if [[ -d ~/.bashrc.d && -r ~/.bashrc.d ]]; then
     done
 fi
 
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    if [ ! -d ~/.virtualenvs ]; then
+         /usr/local/bin/virtualenvwrapper.sh
+    fi
+    . /usr/local/bin/virtualenvwrapper.sh
+fi
+
 PROMPT_DIRTRIM=3
