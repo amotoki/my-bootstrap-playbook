@@ -49,6 +49,7 @@
     - git
     - git-review
     - ipython
+    - jq
     - lv
     - magit
     - ntp
