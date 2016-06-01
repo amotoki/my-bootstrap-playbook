@@ -50,15 +50,20 @@
 
 - name: Prepare OpenStack CLI bash completions
   get_url:
-    url: "https://raw.githubusercontent.com/openstack/python-{{ item }}client/master/tools/{{ item }}.bash_completion"
-    dest: "{{ bash_completion_dir }}/{{ item }}"
+    url: "https://raw.githubusercontent.com/openstack/python-{{ item.module }}client/{{ item.branch }}/tools/{{ item.module }}.bash_completion"
+    dest: "{{ bash_completion_dir }}/{{ item.module }}"
     force: yes
   with_items:
-    - nova
-    - cinder
-    - neutron
-    - keystone
-    - glance
+    - module: nova
+      branch: master
+    - module: cinder
+      branch: master
+    - module: neutron
+      branch: master
+    - module: keystone
+      branch: stable/mitaka
+    - module: glance
+      branch: master
 
 - name: Create bin directory
   file: path={{home}}/bin mode=0755 state=directory
