@@ -7,7 +7,7 @@
 - name: Set /etc/hosts
   sudo: yes
   copy: src=hosts dest=/etc/hosts owner=root group=root mode=0644 backup=yes
-  when: not skip_hosts
+  when: skip_hosts is defined and not skip_hosts
 
 - name: Set apt proxy if necessary
   sudo: yes

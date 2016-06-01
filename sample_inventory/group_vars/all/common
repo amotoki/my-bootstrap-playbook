@@ -23,7 +23,7 @@
 # to use a different type of bash prompt. (Used in myenv role)
 #hypervisor_host: true
 
-# Set yet if you don't want to override /etc/hosts (default: no)
+# Set yet if you don't want to override /etc/hosts (default: yes)
 #skip_hosts: yes
 
 # If set, sudo NOPASSWD entry is set up for the target user.
