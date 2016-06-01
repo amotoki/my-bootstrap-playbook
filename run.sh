@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ENV=`hostname`
+ENV=${ENV:-$(hostname)}
 
 if [ -z "$2" ]; then
   echo "Usage: $0 <host> <playbook> [playbook options...]"
