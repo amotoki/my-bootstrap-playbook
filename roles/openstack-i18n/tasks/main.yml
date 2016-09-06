@@ -11,7 +11,7 @@
   with_items:
     - zeroinstall-injector
     - openjdk-7-jre
-  sudo: yes
+  become: yes
 
 - name: check zanata-cli is installed
   stat: path="{{ home }}/bin/zanata-cli"
@@ -28,10 +28,10 @@
 - name: Ensure /usr/local/jenkins
   file: path=/usr/local/jenkins
         state=directory
-  sudo: yes
+  become: yes
 
 - name: Symlink /usr/local/jenkins/slave_scripts
   file: src=/opt/stack/project-config/jenkins/scripts
         dest=/usr/local/jenkins/slave_scripts
         state=link
-  sudo: yes
+  become: yes

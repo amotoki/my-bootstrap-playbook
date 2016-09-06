@@ -1,16 +1,16 @@
 ---
 - name: Set host name
-  sudo: yes
+  become: yes
   hostname: name={{ inventory_hostname }}
   when: inventory_hostname not in ["localhost", "127.0.0.1"]
 
 - name: Set /etc/hosts
-  sudo: yes
+  become: yes
   copy: src=hosts dest=/etc/hosts owner=root group=root mode=0644 backup=yes
   when: skip_hosts is defined and not skip_hosts
 
 - name: Set apt proxy if necessary
-  sudo: yes
+  become: yes
   template:
     src: apt.conf
     dest: /etc/apt/apt.conf.d/00proxy
@@ -27,18 +27,18 @@
   - regexp: ^https_proxy=
     line: https_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/
   when: proxy is defined
-  sudo: yes
+  become: yes
 - name: Add no_proxy to /etc/environment
   lineinfile:
     dest: /etc/environment
     regexp: ^no_proxy=
     line: no_proxy={{no_proxy}}
   when: no_proxy is defined
-  sudo: yes
+  become: yes
 
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=3600
-  sudo: yes
+  become: yes
 
 - name: Install packages
   apt: pkg={{ item }} state=installed
@@ -61,7 +61,7 @@
     - tmux
     - vim
     - yaml-mode
-  sudo: yes
+  become: yes
 
 - name: gather remote user name
   command: whoami
@@ -76,4 +76,4 @@
     src: sudoers_nopasswd
     dest: /etc/sudoers.d/dev_nopasswd
   when: sudo_nopass|default()
-  sudo: yes
+  become: yes
