@@ -60,12 +60,13 @@ fi
 
 {% if myenv_openstack_support|default(true) %}
 __openrc_ps1() {
-    if [ ! -n "$OS_AUTH_URL" ]; then
-	return
-    fi
+    # OS_CLOUD envvar has preference over legacy envvars OS_*.
     if [ -n "$OS_CLOUD" ]; then
         echo " [OS_CLOUD:$OS_CLOUD]"
         return
+    fi
+    if [ ! -n "$OS_AUTH_URL" ]; then
+	return
     fi
     local auth_url=$(echo $OS_AUTH_URL | cut -d / -f 3 | cut -d : -f 1)
     if which resolveip > /dev/null; then
