@@ -6,11 +6,20 @@
   template: src=zanata.ini.j2 dest={{ home }}/.config/zanata.ini mode=0600 backup=yes
   when: zanata_username is defined and zanata_apikey is defined
 
+- name: Add Launchpad OpenJDK key
+  apt_key: id=86F44E2A keyserver=keyserver.ubuntu.com
+  become: yes
+
+  # zanata-cli requires openjdk-8
+- name: Add OpenJDK 8 apt repository
+  apt_repository: repo='deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main'
+  become: yes
+
 - name: Install dependencies of zanata-cli
   apt: pkg={{ item }} state=installed
   with_items:
     - zeroinstall-injector
-    - openjdk-7-jre
+    - openjdk-8-jre
   become: yes
 
 - name: check zanata-cli is installed
