@@ -15,7 +15,7 @@
   command: whoami
   register: username
   changed_when: no
-  always_run: yes
+  check_mode: no
 
 - name: Install git
   apt:
@@ -23,7 +23,7 @@
     state: installed
   with_items:
     - git
-  sudo: yes
+  become: yes
 
 - name: git clone devstack
   git:
@@ -38,7 +38,7 @@
     path: /opt/stack
     state: directory
     owner: "{{ username.stdout }}"
-  sudo: yes
+  become: yes
 
 - name: check /opt/stack/nova exists
   stat:
@@ -134,7 +134,7 @@
 #     - python-dev
 #     - libssl-dev
 #     - libffi-dev
-#   sudo: yes
+#   become: yes
 
 - name: Install optional packages for OpenStack development (python3)
   apt:
@@ -142,4 +142,4 @@
     state: installed
   with_items:
     - python3-dev
-  sudo: yes
+  become: yes
