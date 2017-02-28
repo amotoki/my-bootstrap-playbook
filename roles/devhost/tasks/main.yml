@@ -1,12 +1,19 @@
 ---
 - name: Set host name
   become: yes
-  hostname: name={{ inventory_hostname }}
+  hostname:
+    name: "{{ inventory_hostname }}"
   when: inventory_hostname not in ["localhost", "127.0.0.1"]
 
 - name: Set /etc/hosts
   become: yes
-  copy: src=hosts dest=/etc/hosts owner=root group=root mode=0644 backup=yes
+  copy:
+    src: hosts
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
   when: skip_hosts is defined and not skip_hosts
 
 - name: Set apt proxy if necessary
@@ -23,25 +30,29 @@
     line: "{{item.line}}"
   with_items:
   - regexp: ^http_proxy=
-    line: http_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/
+    line: "http_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/"
   - regexp: ^https_proxy=
-    line: https_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/
+    line: "https_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/"
   when: proxy is defined
   become: yes
 - name: Add no_proxy to /etc/environment
   lineinfile:
     dest: /etc/environment
     regexp: ^no_proxy=
-    line: no_proxy={{no_proxy}}
+    line: "no_proxy={{no_proxy}}"
   when: no_proxy is defined
   become: yes
 
 - name: Update apt cache
-  apt: update_cache=yes cache_valid_time=3600
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
   become: yes
 
 - name: Install packages
-  apt: pkg={{ item }} state=installed
+  apt:
+    pkg: "{{ item }}"
+    state: installed
   with_items:
     - colordiff
     - curl
@@ -69,7 +80,8 @@
   when: sudo_nopass|default()
   changed_when: no
 - name: set fact username
-  set_fact: username={{username.stdout}}
+  set_fact:
+    username: "{{username.stdout}}"
   when: sudo_nopass|default()
 - name: set no password sudoers for ubuntu
   template:

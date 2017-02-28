@@ -1,5 +1,6 @@
 ---
-- set_fact: role={{role|default('all-in-one')}}
+- set_fact:
+    role: "{{ role|default('all-in-one') }}"
 
 - name: Include site-specific variables
   include_vars: "{{ item }}"
@@ -17,27 +18,36 @@
   always_run: yes
 
 - name: Install git
-  apt: pkg={{ item }} state=installed
+  apt:
+    pkg: "{{ item }}"
+    state: installed
   with_items:
     - git
   sudo: yes
 
 - name: git clone devstack
-  git: repo=http://git.openstack.org/openstack-dev/devstack.git
-       dest={{ devstack_dir }}
-       version={{ branch }}
-       force=no
-       update=no
+  git:
+    repo: http://git.openstack.org/openstack-dev/devstack.git
+    dest: "{{ devstack_dir }}"
+    version: "{{ branch }}"
+    force: no
+    update: no
 
 - name: create /opt/stack
-  file: path=/opt/stack state=directory owner={{username.stdout}}
+  file:
+    path: /opt/stack
+    state: directory
+    owner: "{{ username.stdout }}"
   sudo: yes
 
 - name: check /opt/stack/nova exists
-  stat: path=/opt/stack/nova
+  stat:
+    path: /opt/stack/nova
   register: st
 - name: get gitrepo tarball
-  get_url: url={{gitrepo_tarball_url}} dest=/tmp/gitrepo.tar.bz2
+  get_url:
+    url: "{{ gitrepo_tarball_url }}"
+    dest: /tmp/gitrepo.tar.bz2
   register: tarball_updated
   when: gitrepo_tarball_url is defined and not st.stat.exists
 - name: extract gitrepo tarball
@@ -45,9 +55,10 @@
   when: tarball_updated|changed and not st.stat.exists
 
 - name: Ensure {{ home }}/.bash_completion.d
-  file: dest={{ bash_completion_dir }}
-        mode=0755
-        state=directory
+  file:
+    dest: "{{ bash_completion_dir }}"
+    mode: 0755
+    state: directory
 
 - name: Prepare OpenStack CLI bash completions
   get_url:
@@ -67,21 +78,30 @@
       branch: master
 
 - name: Create bin directory
-  file: path={{home}}/bin mode=0755 state=directory
+  file:
+    path: "{{ home }}/bin"
+    mode: 0755
+    state: directory
 
 - name: Copy useful scripts
-  copy: src=bin/{{item}} dest={{home}}/bin/{{item}} mode=0755 backup=yes
+  copy:
+    src: "bin/{{ item }}"
+    dest: "{{ home }}/bin/{{ item }}"
+    mode: 0755
+    backup: yes
   with_items:
     - git-clone-openstack-repo.sh
     - horizon-reload.sh
 
 - name: git clone devstack-tools
-  git: repo=https://github.com/amotoki/devstack-tools.git
-       dest={{ devstack_tools_dir }}
-       force=no
+  git:
+    repo: https://github.com/amotoki/devstack-tools.git
+    dest: "{{ devstack_tools_dir }}"
+    force: no
 
 - name: controller must be specified for compute node
-  fail: msg="controller must be specified for compute node"
+  fail:
+    msg: "controller must be specified for compute node"
   when: role == "compute" and controller is not defined
 
 - name: Deploy local.conf (controller)
@@ -104,7 +124,9 @@
   when: role == "all-in-one"
 
 # - name: Install optional packages for OpenStack development
-#   apt: pkg={{ item }} state=installed
+#   apt:
+#     pkg: "{{ item }}"
+#     state: installed
 #   with_items:
 #     - libmysqlclient-dev
 #     - libxml2-dev
@@ -115,7 +137,9 @@
 #   sudo: yes
 
 - name: Install optional packages for OpenStack development (python3)
-  apt: pkg={{ item }} state=installed
+  apt:
+    pkg: "{{ item }}"
+    state: installed
   with_items:
     - python3-dev
   sudo: yes

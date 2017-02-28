@@ -7,7 +7,10 @@
   no_log: yes
 
 - name: Copy dot files
-  copy: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
+  copy:
+    src: "dotfiles/{{item}}"
+    dest: "{{home}}/{{item}}"
+    backup: yes
   with_items:
     - .bash_completion
     - .exrc
@@ -15,7 +18,10 @@
     - .screenrc
     - .tmux.conf
 - name: Copy dot files
-  template: src=dotfiles/{{item}} dest={{home}}/{{item}} backup=yes
+  template:
+    src: "dotfiles/{{item}}"
+    dest: "{{home}}/{{item}}"
+    backup: yes
   with_items:
     - .bashrc
     - .emacs
@@ -23,29 +29,49 @@
     - .profile
 
 - name: Create ~/.bashrc.d
-  file: path={{home}}/.bashrc.d state=directory
+  file:
+    path: "{{home}}/.bashrc.d"
+    state: directory
 - name: Copy jenkins to bashrc.d
-  copy: src=bashrc.d/jenkins dest={{home}}/.bashrc.d/jenkins
+  copy:
+    src: bashrc.d/jenkins
+    dest: "{{home}}/.bashrc.d/jenkins"
   when: jenkins_cli is defined
 
 - name: Create .ssh directory
-  file: path={{home}}/.ssh mode=0700 state=directory
+  file:
+    path: "{{home}}/.ssh"
+    mode: 0700
+    state: directory
 
 - name: Setup SSH configs
-  copy: src=ssh/{{item}} dest={{home}}/.ssh/{{item}} backup=yes
+  copy:
+    src: "ssh/{{item}}"
+    dest: "{{home}}/.ssh/{{item}}"
+    backup: yes
   with_items:
     - authorized_keys
     - config
 
 - name: Deploy Transifex RC
-  template: src=transifexrc.j2 dest={{ home }}/.transifexrc mode=0600 backup=yes
+  template:
+    src: transifexrc.j2
+    dest: "{{ home }}/.transifexrc"
+    mode: 0600
+    backup: yes
   when: transifex_username is defined and transifex_password is defined
 
 - name: Ensure ~/.config
-  file: path={{home}}/.config state=directory
+  file:
+    path: "{{home}}/.config"
+    state: directory
 
 - name: Deploy Zanata config
-  template: src=zanata.ini.j2 dest={{ home }}/.config/zanata.ini mode=0600 backup=yes
+  template:
+    src: zanata.ini.j2
+    dest: "{{ home }}/.config/zanata.ini"
+    mode: 0600
+    backup: yes
   when: zanata_username is defined and zanata_apikey is defined
 
 - name: Setup SSH key pairs
@@ -59,17 +85,26 @@
   no_log: yes
 
 - name: Create bin directory
-  file: path={{home}}/bin mode=0755 state=directory
+  file:
+    path: "{{home}}/bin"
+    mode: 0755
+    state: directory
 
 - name: Copy useful scripts
-  copy: src=bin/{{item}} dest={{home}}/bin/{{item}} mode=0755 backup=yes
+  copy:
+    src: "bin/{{item}}"
+    dest: "{{home}}/bin/{{item}}"
+    mode: 0755
+    backup: yes
   with_items:
     - Emacs
     - agent-check.sh
 
 - name: Install Emacs Lisp files
-  copy: src={{ item.src }} dest={{ item.dest }}
-        backup=yes
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    backup: yes
   with_items:
     - src: elisp
       dest: "{{ home }}"
