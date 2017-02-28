@@ -32,7 +32,7 @@
   file: path={{home}}/.ssh mode=0700 state=directory
 
 - name: Setup SSH configs
-  copy: src=ssh/{{item}} dest={{home}}/.ssh/{{item}} backup=yes force=no
+  copy: src=ssh/{{item}} dest={{home}}/.ssh/{{item}} backup=yes
   with_items:
     - authorized_keys
     - config
@@ -52,7 +52,6 @@
   copy:
     content: "{{ item.key }}"
     dest: "{{ home }}/.ssh/{{ item.name }}"
-    force: no
     mode: "0400"
     backup: yes
   with_items: "{{ ssh_key_pairs }}"
