@@ -85,12 +85,12 @@ __openrc_ps1() {
 
 if [ "$color_prompt" = yes ]; then
 {% if hypervisor_host|default() %}
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;41m\]\u@\h\[\033[00m\]:\[\033[01;44m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;41m\]\u@\h\[\033[00m\]:\[\033[01;44m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\][\t]\$ '
 {% else %}
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\][\t]\$ '
 {% endif %}
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$(__openrc_ps1)\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$(__openrc_ps1)[\t]\$ '
 fi
 unset color_prompt force_color_prompt
 
