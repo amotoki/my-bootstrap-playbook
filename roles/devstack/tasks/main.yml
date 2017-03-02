@@ -106,7 +106,7 @@
 
 - name: Deploy local.conf (controller)
   template:
-    src: local.conf
+    src: "{{ branch|basename }}/local.conf"
     dest: "{{ devstack_dir }}/local.conf"
   when: role == "all-in-one"
 
