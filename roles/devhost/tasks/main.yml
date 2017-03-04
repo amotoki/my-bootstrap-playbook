@@ -54,6 +54,7 @@
     pkg: "{{ item }}"
     state: installed
   with_items:
+    - aptitude
     - colordiff
     - curl
     - emacs24-nox
@@ -65,12 +66,14 @@
     - magit
     - ntp
     - pbzip2
+    - python
     - python-dev
     - python-pip
     - screen
     - sl
     - tmux
     - vim
+    - virtualenvwrapper
     - yaml-mode
   become: yes
 
