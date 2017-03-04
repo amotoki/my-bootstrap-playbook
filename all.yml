@@ -2,3 +2,4 @@
 - include: myenv.yml
 - include: devstack.yml
 - include: openstack-i18n.yml
+  when: install_i18n|default(false)|bool
