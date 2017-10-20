@@ -72,8 +72,8 @@
       branch: master
     - module: neutron
       branch: master
-    - module: keystone
-      branch: stable/mitaka
+    # - module: keystone
+    #   branch: stable/mitaka
     - module: glance
       branch: master
 
