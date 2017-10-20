@@ -124,3 +124,25 @@
       pip install ipython bpython
     dest: "{{ home }}/.virtualenvs/postmkvirtualenv"
     mode: 0755
+
+- name: Create .mytools directory
+  file:
+    path: "{{ home }}/.mytools"
+    state: directory
+
+- name: git clone dircolors-solarized.git
+  git:
+    repo: https://github.com/seebi/dircolors-solarized.git
+    dest: "{{ home }}/.mytools/dircolors-solarized"
+    force: no
+
+- name: Create ~/.dircolors
+  file:
+    state: link
+    src: "{{ home }}/.mytools/dircolors-solarized/dircolors.ansi-universal"
+    dest: "{{ home }}/.dircolors"
+
+- name: Create .bashrc.d/dircolors
+  copy:
+    src: bashrc.d/ls_dircolors
+    dest: "{{home}}/.bashrc.d"
