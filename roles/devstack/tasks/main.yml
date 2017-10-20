@@ -93,12 +93,6 @@
     - git-clone-openstack-repo.sh
     - horizon-reload.sh
 
-- name: git clone devstack-tools
-  git:
-    repo: https://github.com/amotoki/devstack-tools.git
-    dest: "{{ devstack_tools_dir }}"
-    force: no
-
 - name: controller must be specified for compute node
   fail:
     msg: "controller must be specified for compute node"
@@ -117,10 +111,11 @@
   when: role == "compute"
 
 - name: Deploy local.sh for controler
-  command: cp {{ item.src }} {{ item.dest }} creates={{ item.dest }}
-  with_items:
-    - src: "{{ devstack_tools_dir }}/config/local.sh"
-      dest: "{{ devstack_dir }}/local.sh"
+  copy:
+    src: "local.sh"
+    dest: "{{ devstack_dir }}/local.sh"
+    mode: 0755
+    backup: yes
   when: role == "all-in-one"
 
 # - name: Install optional packages for OpenStack development
