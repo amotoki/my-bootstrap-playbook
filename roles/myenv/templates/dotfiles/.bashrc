@@ -83,14 +83,18 @@ __openrc_ps1() {
 }
 {% endif %}
 
+__netns_ps1=$(ip netns identify 2>/dev/null)
+if [ -n "$__netns_ps1" ]; then
+    __netns_ps1="($__netns_ps1)"
+fi
 if [ "$color_prompt" = yes ]; then
 {% if hypervisor_host|default() %}
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;41m\]\u@\h\[\033[00m\]:\[\033[01;44m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\][\t]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;41m\]\u@\h\[\033[00m\]:\[\033[01;44m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\]${__netns_ps1}[\t]\$ '
 {% else %}
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\][\t]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\]${__netns_ps1}[\t]\$ '
 {% endif %}
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$(__openrc_ps1)[\t]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$(__openrc_ps1)${__netns_ps1}[\t]\$ '
 fi
 unset color_prompt force_color_prompt
 
