@@ -92,6 +92,7 @@
   with_items:
     - git-clone-openstack-repo.sh
     - horizon-reload.sh
+    - openrc-clear.sh
 
 - name: controller must be specified for compute node
   fail:

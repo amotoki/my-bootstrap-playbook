@@ -1,0 +1,17 @@
+unset OS_PASSWORD
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PROJECT_NAME
+unset OS_TENANT_NAME
+unset OS_REGION_NAME
+unset OS_ENDPOINT_TYPE
+unset OS_REGION
+unset OS_PROJECT_DOMAIN_ID
+unset OS_USER_DOMAIN_ID
+unset OS_IDENTITY_API_VERSION
+unset OS_VOLUME_API_VERSION
+unset OS_CLOUD
+
+echo "Checking OS_* envvars:"
+env | grep OS_
