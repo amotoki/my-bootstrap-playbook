@@ -100,7 +100,7 @@
 (setq message-log-max t)
 (setq visible-bell t)
 
-(setq-default fill-column 70)
+(setq-default fill-column 79)
 (add-hook 'text-mode-hook '(lambda () (auto-fill-mode t)))
 (add-hook 'write-file-hooks 'time-stamp)
 
