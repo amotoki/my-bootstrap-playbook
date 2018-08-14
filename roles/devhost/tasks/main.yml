@@ -63,7 +63,6 @@
     - ipython
     - jq
     - lv
-    - magit
     - ntp
     - pbzip2
     - python
