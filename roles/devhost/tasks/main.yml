@@ -57,7 +57,7 @@
     - aptitude
     - colordiff
     - curl
-    - emacs24-nox
+    - emacs-nox
     - git
     - git-review
     - ipython
