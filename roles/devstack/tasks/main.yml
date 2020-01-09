@@ -139,3 +139,43 @@
   with_items:
     - python3-dev
   become: yes
+
+- name: Install apache2 for development
+  apt:
+    pkg: apache2
+    state: installed
+  become: yes
+
+- name: Deploy apache2 static.conf
+  copy:
+    src: "apache2/static.conf"
+    dest: "/etc/apache2/sites-available/static.conf"
+  become: yes
+
+- name: Enable apache2 static.conf
+  file:
+    src: "../sites-available/static.conf"
+    dest: "/etc/apache2/sites-enabled/static.conf"
+    state: link
+  become: yes
+
+- name: Add listen port for static contents
+  lineinfile:
+    dest: /etc/apache2/ports.conf
+    regexp: '^Listen 55555'
+    insertafter: 'Listen 80^'
+    line: 'Listen 55555'
+
+- name: Create symlinks to work places in /var/www
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    force: yes
+  become: yes
+  with_items:
+    # /var/www/html will be created by apache2 package
+    - src: /opt/stack
+      dest: /var/www/html/stack
+    - src: "{{ home }}/work"
+      dest: /var/www/html/work
