@@ -89,7 +89,7 @@ case "$MODE" in
     ;;
   apache|apache2)
     sed -e 's/^#* *_USE_RUNSERVER = .*/_USE_RUNSERVER = False/' -i openstack_dashboard/local/local_settings.py
-    PYTHON=`which python`
+    PYTHON=`which python3`
     handle_static_files
     sudo service apache2 reload
     ;;
