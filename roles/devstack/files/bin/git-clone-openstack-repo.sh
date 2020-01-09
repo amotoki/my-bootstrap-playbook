@@ -1,6 +1,6 @@
 #!/bin/sh
 
-GIT_BASE=https://git.openstack.org/
+GIT_BASE=https://opendev.org
 
 usage() {
   cat <<EOF
@@ -26,6 +26,9 @@ get_category() {
       openstack-infra|infra)
         echo openstack-infra
         ;;
+      x)
+        echo x
+        ;;
       *)
         echo "The specified category is not supported."
         usage
@@ -33,6 +36,8 @@ get_category() {
     esac
   else
     echo openstack openstack-infra openstack-dev
+    usage
+    exit 1
   fi
 }
 
