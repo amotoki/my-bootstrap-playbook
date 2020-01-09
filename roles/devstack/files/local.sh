@@ -9,5 +9,5 @@ elif [ -f $HOME/.ssh/id_rsa.pub ]; then
 fi
 
 # Disable horizon using apache2
-sed -i -e 's|^\(WEBROOT="/dashboard/"\)|# \1|' /opt/stack/horizon/openstack_dashboard/local/local_settings.py
-sed -i -e 's|^\(COMPRESS_OFFLINE=True\)|# \1|' /opt/stack/horizon/openstack_dashboard/local/local_settings.py
+# sed -i -e 's|^\(WEBROOT="/dashboard/"\)|# \1|' /opt/stack/horizon/openstack_dashboard/local/local_settings.py
+# sed -i -e 's|^\(COMPRESS_OFFLINE=True\)|# \1|' /opt/stack/horizon/openstack_dashboard/local/local_settings.py
