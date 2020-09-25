@@ -39,7 +39,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -66,7 +66,7 @@ __openrc_ps1() {
         return
     fi
     if [ ! -n "$OS_AUTH_URL" ]; then
-	return
+        return
     fi
     local auth_url=$(echo $OS_AUTH_URL | cut -d / -f 3 | cut -d : -f 1)
     if which resolveip > /dev/null; then
@@ -87,6 +87,7 @@ __netns_ps1=$(ip netns identify 2>/dev/null)
 if [ -n "$__netns_ps1" ]; then
     __netns_ps1="($__netns_ps1)"
 fi
+
 if [ "$color_prompt" = yes ]; then
 {% if hypervisor_host|default() %}
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;41m\]\u@\h\[\033[00m\]:\[\033[01;44m\]\w\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\[\033[01;33m\]$(__openrc_ps1)\[\033[00m\]${__netns_ps1}[\t]\$ '
@@ -96,6 +97,7 @@ if [ "$color_prompt" = yes ]; then
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$(__openrc_ps1)${__netns_ps1}[\t]\$ '
 fi
+
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -150,7 +152,7 @@ fi
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+alias ls='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
