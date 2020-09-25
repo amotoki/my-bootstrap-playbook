@@ -51,29 +51,28 @@
 
 - name: Install packages
   apt:
-    pkg: "{{ item }}"
-    state: installed
-  with_items:
-    - aptitude
-    - colordiff
-    - curl
-    - emacs-nox
-    - git
-    - git-review
-    - ipython
-    - jq
-    - lv
-    - ntp
-    - pbzip2
-    - python
-    - python-dev
-    - python-pip
-    - screen
-    - sl
-    - tmux
-    - vim
-    - virtualenvwrapper
-    - yaml-mode
+    pkg:
+      - aptitude
+      - colordiff
+      - curl
+      - emacs-nox
+      - git
+      - git-review
+      - ipython
+      - jq
+      - lv
+      - ntp
+      - pbzip2
+      - python
+      - python-dev
+      - python-pip
+      - screen
+      - sl
+      - tmux
+      - vim
+      - virtualenvwrapper
+      - yaml-mode
+    state: present
   become: yes
 
 - name: gather remote user name
