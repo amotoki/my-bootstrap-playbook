@@ -19,10 +19,8 @@
 
 - name: Install git
   apt:
-    pkg: "{{ item }}"
-    state: installed
-  with_items:
-    - git
+    pkg: git
+    state: present
   become: yes
 
 - name: git clone devstack
@@ -52,7 +50,7 @@
   when: gitrepo_tarball_url is defined and not st.stat.exists
 - name: extract gitrepo tarball
   command: tar xf /tmp/gitrepo.tar.bz2 -C /opt/stack
-  when: tarball_updated|changed and not st.stat.exists
+  when: tarball_updated is changed and not st.stat.exists
 
 - name: Ensure {{ home }}/.bash_completion.d
   file:
@@ -122,7 +120,7 @@
 # - name: Install optional packages for OpenStack development
 #   apt:
 #     pkg: "{{ item }}"
-#     state: installed
+#     state: present
 #   with_items:
 #     - libmysqlclient-dev
 #     - libxml2-dev
@@ -134,16 +132,14 @@
 
 - name: Install optional packages for OpenStack development (python3)
   apt:
-    pkg: "{{ item }}"
-    state: installed
-  with_items:
-    - python3-dev
+    pkg: python3-dev
+    state: present
   become: yes
 
 - name: Install apache2 for development
   apt:
     pkg: apache2
-    state: installed
+    state: present
   become: yes
 
 - name: Deploy apache2 static.conf
@@ -165,6 +161,7 @@
     regexp: '^Listen 55555'
     insertafter: 'Listen 80^'
     line: 'Listen 55555'
+  become: yes
 
 - name: Create symlinks to work places in /var/www
   file:
