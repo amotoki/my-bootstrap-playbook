@@ -58,14 +58,12 @@
       - emacs-nox
       - git
       - git-review
-      - ipython
       - jq
       - lv
       - ntp
       - pbzip2
       - python
       - python-dev
-      - python-pip
       - screen
       - sl
       - tmux
@@ -74,6 +72,28 @@
       - yaml-mode
     state: present
   become: yes
+
+- name: Install packages for Ubuntu focal
+  apt:
+    pkg:
+      - python3-pip
+      - python3-ipython
+    state: present
+  become: yes
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_release == "focal"
+
+- name: Install packages for Ubuntu focal
+  apt:
+    pkg:
+      - ipython
+      - python-pip
+    state: present
+  become: yes
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_release != "focal"
 
 - name: gather remote user name
   command: whoami
