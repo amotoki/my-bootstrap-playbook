@@ -1,9 +1,10 @@
 #!/bin/sh
 
-ENV=${ENV:-$(hostname)}
+ENV=${ENV:-$(hostname --short)}
 
 if [ -z "$2" ]; then
   echo "Usage: $0 <host> <playbook> [playbook options...]"
+  echo "(env inventory: $ENV)"
   exit 1
 fi
 
