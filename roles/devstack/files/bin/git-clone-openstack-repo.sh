@@ -1,6 +1,7 @@
 #!/bin/sh
 
 GIT_BASE=https://opendev.org
+#GIT_BASE=https://github.com
 
 usage() {
   cat <<EOF
