@@ -174,5 +174,5 @@
     # /var/www/html will be created by apache2 package
     - src: /opt/stack
       dest: /var/www/html/stack
-    - src: "{{ home }}/work"
+    - src: "{{ home }}/src"
       dest: /var/www/html/work

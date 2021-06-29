@@ -146,3 +146,12 @@
   copy:
     src: bashrc.d/ls_dircolors
     dest: "{{home}}/.bashrc.d"
+
+- name: Create directories for cloned git repositories
+  file:
+    state: directory
+    path: "{{ item }}"
+  with_items:
+    - "{{ home }}/src/opendev.org/openstack"
+    - "{{ home }}/src/opendev.org/x"
+    - "{{ home }}/src/github.com"
