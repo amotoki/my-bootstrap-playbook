@@ -35,6 +35,7 @@
     line: "https_proxy={{proxy.scheme}}://{{proxy.host}}:{{proxy.port}}/"
   when: proxy is defined
   become: yes
+
 - name: Add no_proxy to /etc/environment
   lineinfile:
     dest: /etc/environment
@@ -68,7 +69,7 @@
       - sl
       - tmux
       - vim
-      - virtualenvwrapper
+      #- virtualenvwrapper
       - yaml-mode
     state: present
   become: yes
